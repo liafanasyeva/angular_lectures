@@ -1,4 +1,4 @@
-import { Pokemon } from './pokemon'
+import { Pokemon } from './pokemon';
 
 export let POKEMONS: Pokemon[] = [
     { id: 1, name: 'Nice',  damage: 10, caught: false},
