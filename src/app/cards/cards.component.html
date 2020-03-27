@@ -1,0 +1,20 @@
+<h2>Cards</h2>
+
+<div class="cards-container"> 
+<ul class="pokemons">
+  <li *ngFor="let pokemon of pokemons" class="pokemon" [style.box-shadow] = 'pokemon.damage > 30 ? "0px 1px 10px 0px rgba(255,0,0,1)" : "0px 3px 20px 0px rgba(0,0,0,0.75)"'>
+    <img class="pokemon_image" src='/assets/images/{{ pokemon.id }}.png'>
+    <div class="pokemon-description">
+      <span>#{{pokemon.id}}</span><br>
+     Name: {{pokemon.name}}<br>
+     Damage: {{pokemon.damage}}<br>
+     
+     <button class="pokemon-button" type="button" (click)='catchPokemon(pokemon)'>
+      {{pokemon.caught ? "Caught" : "Catch me!" }}
+   </button>
+    </div>
+  </li>
+</ul>
+</div>
+
+
