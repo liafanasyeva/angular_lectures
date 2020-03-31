@@ -1,14 +1,15 @@
 <h2>Pokemon list</h2>
 
 <div class="list-container">
+ 
 <ul class="pokemons">
   <li *ngFor="let pokemon of pokemons"
     [class.selected]="pokemon === selectedPokemon"
     (click)="onSelect(pokemon)">
     <span class="badge">{{pokemon.id}}</span>
-    <!-- <img src={{`/images/${id}.png`}}> -->
      {{pokemon.name}}
      {{pokemon.damage}}
+     {{pokemon.caught ? "Caught" : "Not caught"}}
   </li>
 </ul>
 
