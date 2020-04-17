@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Pokemon } from '../../pokemon';
-import { POKEMONS } from '../../../app/database_pokemons';
 import { PokemonService } from '../service/pokemon.service';
 
 
@@ -12,10 +11,10 @@ import { PokemonService } from '../service/pokemon.service';
 })
 
 export class PokemonsComponent implements OnInit {
-  pokemons:Pokemon[];
+  public pokemons:Pokemon[];
 
   public selectedPokemon: Pokemon;
-  public listOfPokemons: boolean = true;
+  public isListOfPokemons: boolean = true;
 
   @Input() pokemon: Pokemon;
   @Output() changeButtonParent: EventEmitter<number> = new EventEmitter<number>();
@@ -26,22 +25,21 @@ export class PokemonsComponent implements OnInit {
   ngOnInit(): void {
     this.getPokemons();
   }
+  
+  public onSelect(pokemon: Pokemon): void {
+  this.selectedPokemon = pokemon;
+  }
 
   public getPokemons(): void {
     this.pokemons = this.pokemonService.getPokemons();
   }
 
-  public onSelect(pokemon: Pokemon): void {
-  this.selectedPokemon = pokemon;
-  }
-
   public catchPokemon(id: number): void {
-    const pokemon = this.pokemons.find(element => element.id === id);
+    const pokemon =  this.pokemonService.getPokemonById(id);
     pokemon.caught = !pokemon.caught;
   }
   
   public changeView(): void {
-    this.listOfPokemons = !this.listOfPokemons;
-    console.log(this.listOfPokemons)
+    this.isListOfPokemons = !this.isListOfPokemons;
   }
 }

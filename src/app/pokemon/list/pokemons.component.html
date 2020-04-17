@@ -1,10 +1,12 @@
 <h2>Pokemon list</h2>
 
+<app-filter></app-filter>
+
 <button type="button" class="pokemon-view" (click)="changeView()"> 
 Change view
 </button>
 
-<div *ngIf="listOfPokemons" class="pokemon-list">
+<div *ngIf="isListOfPokemons" class="pokemon-list">
   <div *ngFor="let pokemon of pokemons"
   [class.selected]="pokemon === selectedPokemon"
   class="pokemon-list__item"
@@ -16,7 +18,7 @@ Change view
 </div>>
 </div>
 
-<div *ngIf="!listOfPokemons" class="pokemon-cards"> 
+<div *ngIf="!isListOfPokemons" class="pokemon-cards"> 
   <div *ngFor="let pokemon of pokemons" class="pokemon-card__item" [damage-border]="pokemon.damage">
     <img class="pokemon-card__item__image" src='/assets/images/{{ pokemon.id }}.png'>
     <div class="pokemon-card__item__description">
