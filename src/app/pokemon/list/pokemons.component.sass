@@ -1,10 +1,6 @@
-.pokemons 
-  margin: 0 0 2em 0
-  list-style-type: none
-  padding: 0
-  width: 17em
 
-.pokemons li 
+
+.pokemon-list__item 
   cursor: pointer
   position: relative
   left: 0
@@ -14,20 +10,20 @@
   height: 1.6em
   border-radius: 4px
 
-.pokemons li:hover 
+.pokemon-list__item:hover 
   color: #607D8B
   background-color: #DDD
   left: .1em
 
-.pokemons li.selected 
+.pokemon-list__item.selected 
   background-color: #CFD8DC
   color: white
 
-.pokemons li.selected:hover 
+.pokemon-list__item.selected:hover 
   background-color: #BBD8DC
   color: white
 
-.pokemons .badge 
+.pokemon-list__item__badge 
   display: inline-block
   font-size: small
   color: white
@@ -41,8 +37,14 @@
   margin-right: .8em
   border-radius: 4px 0 0 4px
 
-  .pokemon-button 
-    cursor: pointer
-    border-radius: 5px
-    padding: 5px 15px
-      
+.pokemon-card__item__buttton
+  cursor: pointer
+  border-radius: 5px
+  padding: 5px 15px
+
+.pokemon-view
+  margin-left: 20px
+  border-radius: 5px
+  padding: 7px 15px
+  color: white
+  background-color: #405061
