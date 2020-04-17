@@ -1,17 +1,31 @@
 <h2>Pokemon list</h2>
 
-<div class="list-container">
- 
-<ul class="pokemons">
-  <li *ngFor="let pokemon of pokemons"
-    [class.selected]="pokemon === selectedPokemon"
+<button type="button" class="pokemon-view" (click)="changeView()"> 
+Change view
+</button>
+<div *ngIf="listOfPokemons" class="pokemon-list">
+  <div *ngFor="let pokemon of pokemons"
+  class="pokemon-list__item"
     (click)="onSelect(pokemon)">
-    <span class="badge">{{pokemon.id}}</span>
+    <span class="pokemon-list__item__badge">{{pokemon.id}}</span>
      {{pokemon.name}}
      {{pokemon.damage}}
      {{pokemon.caught ? "Caught" : "Not caught"}}
-  </li>
-</ul>
+</div>>
+</div>
 
+<div *ngIf="!listOfPokemons" class="pokemon-cards"> 
+  <div *ngFor="let pokemon of pokemons" class="pokemon-card__item" [damage-border]="pokemon.damage">
+    <img class="pokemon-card__item__image" src='/assets/images/{{ pokemon.id }}.png'>
+    <div class="pokemon-card__item__description">
+      <span>#{{pokemon.id}}</span><br>
+     Name: {{pokemon.name}}<br>
+     Damage: {{pokemon.damage}}<br>
+     Caught: {{pokemon.caught}}
+      <app-catch-button [pokemon] = "pokemon"
+                        (changeButton)="catchPokemon($event)">
+     </app-catch-button>
+    </div>
+</div>
 </div>
 

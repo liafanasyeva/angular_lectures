@@ -14,10 +14,9 @@ export class CatchButtonComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  onCatchButton(pokemon): void {
+  public onCatchButton( pokemon ): void {
     this.changeButton.emit(pokemon.id);
   }
 
