@@ -3,8 +3,10 @@
 <button type="button" class="pokemon-view" (click)="changeView()"> 
 Change view
 </button>
+
 <div *ngIf="listOfPokemons" class="pokemon-list">
   <div *ngFor="let pokemon of pokemons"
+  [class.selected]="pokemon === selectedPokemon"
   class="pokemon-list__item"
     (click)="onSelect(pokemon)">
     <span class="pokemon-list__item__badge">{{pokemon.id}}</span>
@@ -29,3 +31,16 @@ Change view
 </div>
 </div>
 
+<app-pokemon-details [pokemon]="selectedPokemon"></app-pokemon-details>
+<!-- 
+<div *ngIf="selectedPokemon">
+
+  <h2>{{selectedPokemon.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedPokemon.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedPokemon.name" placeholder="name"/>
+    </label>
+  </div>
+  
+</div> -->

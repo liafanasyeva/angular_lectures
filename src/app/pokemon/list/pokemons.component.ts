@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Pokemon } from '../../pokemon';
 import { POKEMONS } from '../../../app/database_pokemons';
+import { PokemonService } from '../service/pokemon.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { POKEMONS } from '../../../app/database_pokemons';
 })
 
 export class PokemonsComponent implements OnInit {
-  pokemons = POKEMONS;
+  pokemons:Pokemon[];
 
   public selectedPokemon: Pokemon;
   public listOfPokemons: boolean = true;
@@ -19,10 +20,15 @@ export class PokemonsComponent implements OnInit {
   @Input() pokemon: Pokemon;
   @Output() changeButtonParent: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor( ) {
+  constructor(private pokemonService: PokemonService ) {
    }
    
   ngOnInit(): void {
+    this.getPokemons();
+  }
+
+  public getPokemons(): void {
+    this.pokemons = this.pokemonService.getPokemons();
   }
 
   public onSelect(pokemon: Pokemon): void {
@@ -32,7 +38,6 @@ export class PokemonsComponent implements OnInit {
   public catchPokemon(id: number): void {
     const pokemon = this.pokemons.find(element => element.id === id);
     pokemon.caught = !pokemon.caught;
-
   }
   
   public changeView(): void {
