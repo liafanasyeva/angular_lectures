@@ -16,7 +16,6 @@ export class PokemonsComponent implements OnInit {
   public isListOfPokemons: boolean;
 
   @Input() pokemon: Pokemon;
-  @Output() changeButtonParent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private pokemonService: PokemonService ) {
    }

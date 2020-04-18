@@ -1,12 +1,28 @@
-<div *ngIf="pokemon">
+<div *ngIf="pokemon && !editMode" class="pokemon-card__item">
+  <img
+    class="pokemon-card__item__image"
+    src="/assets/images/{{ pokemon.id }}.png"
+  />
+  <div class="pokemon-card__item__description">
+    <span>#{{ pokemon.id }}</span
+    ><br />
+    Name: {{ pokemon.name }}<br />
+    Damage: {{ pokemon.damage }}<br />
+    Caught: {{ pokemon.caught }}
+  </div>
+  <button (click)="enableEditing()">Edit detail</button>
+  <button (click)="goBack()">Go back</button>
+</div>
 
-    <h2>{{pokemon.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{pokemon.id}}</div>
-    <div>
-      <label>name:
-        {{pokemon.name}}
-      </label>
-    </div>
-    <app-edit-button></app-edit-button>
-    <button (click)="goBack()">go back</button>
+<div *ngIf="pokemon && editMode" class="pokemon-card__item">
+    <form>
+        <label>name:
+            <input [(ngModel)]="pokemonNewName" placeholder="name" [ngModelOptions]="{standalone: true}" />
+        </label>
+        <input [(ngModel)]="pokemonNewDamage" placeholder="damage" [ngModelOptions]="{standalone: true}" />
+        <button (click)="editDetails(pokemonNewName, pokemonNewDamage)">Save</button>
+        <button (click)="disableEditing()">Close</button>
+        <button (click)="goBack()">Go back</button>
+    </form>
+  
 </div>

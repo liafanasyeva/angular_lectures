@@ -34,7 +34,13 @@ export class PokemonService {
 
   public filterPokemons(name: string): Observable<Pokemon[]> {
     return of(
-      this.filteredPokemons = this.POKEMONS.filter((pokemon: Pokemon) => pokemon.name === name)
-      );
+
+      this.filteredPokemons = this.POKEMONS.filter((pokemon: Pokemon) => pokemon.name === name));
+  }
+
+  public editPokemon(pokemon: Pokemon, name:string, damage: number): Observable<Pokemon> {
+    pokemon.name = name;
+    pokemon.damage = damage;
+    return of(pokemon);
   }
 }

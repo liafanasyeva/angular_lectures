@@ -17,23 +17,26 @@ Change view
      <span class="pokemon-list__item__badge">{{pokemon.id}}</span>
      {{pokemon.name}}
      {{pokemon.damage}}
-     {{pokemon.caught ? "Caught" : "Not caught"}} 
-     <app-edit-button></app-edit-button>
-    </a>  
+     {{pokemon.caught ? "Caught" : "Not caught"}} </a>
+     
+      
 </div>
 </div>
 
 <div *ngIf="!isListOfPokemons" class="pokemon-cards"> 
-  <a routerLink="/details/{{pokemon.id}}"*ngFor="let pokemon of pokemons" class="pokemon-card__item" [damage-border]="pokemon.damage">
+ <div *ngFor="let pokemon of pokemons" class="pokemon-card__item" [damage-border]="pokemon.damage">
+     <a routerLink="/details/{{pokemon.id}}">
     <img class="pokemon-card__item__image" src='/assets/images/{{ pokemon.id }}.png'>
     <div class="pokemon-card__item__description">
       <span>#{{pokemon.id}}</span><br>
      Name: {{pokemon.name}}<br>
      Damage: {{pokemon.damage}}<br>
      Caught: {{pokemon.caught}}
-      <app-catch-button [pokemon] = "pokemon"
-                        (changeButton)="catchPokemon($event)">
-     </app-catch-button>
     </div>
-  </a>
+    </a> 
+    <app-catch-button [pokemon] = "pokemon"
+                      (changeButton)="catchPokemon($event)">
+    </app-catch-button>
+  </div>
+    
 </div>

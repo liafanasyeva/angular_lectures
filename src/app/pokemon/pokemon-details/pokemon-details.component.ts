@@ -11,6 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PokemonDetailsComponent implements OnInit {
   public pokemon: Pokemon;
+  public editMode: boolean = false;
+  public pokemonNewName: string;
+  public pokemonNewDamage: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +23,7 @@ export class PokemonDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemon();
+    this.disableEditing();
   }
 
   public getPokemon(): void {
@@ -31,5 +35,22 @@ export class PokemonDetailsComponent implements OnInit {
   public goBack(): void {
     this.location.back();
   }
+
+  public enableEditing():any {
+    console.log("check");
+    return this.editMode = true;
+  }
+
+  public disableEditing(): any {
+    return this.editMode = false;
+  }
+
+  public editDetails(name: string, damage: number): void {
+    console.log(name, damage);
+     
+    this.pokemonService.editPokemon(this.pokemon, name, damage)
+        .subscribe(() => this.goBack());
+  }
+
 
 }
