@@ -1,7 +1,9 @@
 <h2>Pokemon list</h2>
 
-<app-filter></app-filter>
-
+<app-pokemon-filter (pokemonNameFilter)="filterPokemons($event)"
+                    (resetPokemonFilter)="getPokemons()"
+                    ></app-pokemon-filter>
+                    
 <button type="button" class="pokemon-view" (click)="changeView()"> 
 Change view
 </button>
@@ -10,16 +12,19 @@ Change view
   <div *ngFor="let pokemon of pokemons"
   [class.selected]="pokemon === selectedPokemon"
   class="pokemon-list__item"
-    (click)="onSelect(pokemon)">
-    <span class="pokemon-list__item__badge">{{pokemon.id}}</span>
+    >
+    <a routerLink="/details/{{pokemon.id}}">
+     <span class="pokemon-list__item__badge">{{pokemon.id}}</span>
      {{pokemon.name}}
      {{pokemon.damage}}
-     {{pokemon.caught ? "Caught" : "Not caught"}}
-</div>>
+     {{pokemon.caught ? "Caught" : "Not caught"}} 
+     <app-edit-button></app-edit-button>
+    </a>  
+</div>
 </div>
 
 <div *ngIf="!isListOfPokemons" class="pokemon-cards"> 
-  <div *ngFor="let pokemon of pokemons" class="pokemon-card__item" [damage-border]="pokemon.damage">
+  <a routerLink="/details/{{pokemon.id}}"*ngFor="let pokemon of pokemons" class="pokemon-card__item" [damage-border]="pokemon.damage">
     <img class="pokemon-card__item__image" src='/assets/images/{{ pokemon.id }}.png'>
     <div class="pokemon-card__item__description">
       <span>#{{pokemon.id}}</span><br>
@@ -30,19 +35,5 @@ Change view
                         (changeButton)="catchPokemon($event)">
      </app-catch-button>
     </div>
+  </a>
 </div>
-</div>
-
-<app-pokemon-details [pokemon]="selectedPokemon"></app-pokemon-details>
-<!-- 
-<div *ngIf="selectedPokemon">
-
-  <h2>{{selectedPokemon.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedPokemon.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedPokemon.name" placeholder="name"/>
-    </label>
-  </div>
-  
-</div> -->

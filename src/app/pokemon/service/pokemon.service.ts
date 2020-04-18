@@ -1,4 +1,4 @@
-//import { Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Pokemon } from '../../pokemon';
 
@@ -20,17 +20,21 @@ export class PokemonService {
     { id: 10, name: 'Tornado', damage: 2, caught: false}
   ];
 
+  public filteredPokemons: Pokemon[];
+
   constructor() { }
   
-  public getPokemons() {
-    return this.POKEMONS;
+  public getPokemons(): Observable<Pokemon[]> {
+    return of(this.POKEMONS);
   }
 
-  public getPokemonById(id: number) {
-    return this.POKEMONS.find((pokemon: Pokemon) => pokemon.id === id);
+  public getPokemonById(id: number): Observable<Pokemon>{
+    return of(this.POKEMONS.find((pokemon: Pokemon) => pokemon.id === id));
   }
 
-  public filterPokemons(name: string) {
-    return this.POKEMONS.filter((pokemon: Pokemon) => pokemon.name === name);
+  public filterPokemons(name: string): Observable<Pokemon[]> {
+    return of(
+      this.filteredPokemons = this.POKEMONS.filter((pokemon: Pokemon) => pokemon.name === name)
+      );
   }
 }

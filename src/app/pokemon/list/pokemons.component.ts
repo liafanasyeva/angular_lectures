@@ -11,10 +11,9 @@ import { PokemonService } from '../service/pokemon.service';
 })
 
 export class PokemonsComponent implements OnInit {
-  public pokemons:Pokemon[];
-
+  public pokemons:Pokemon[] = [];
   public selectedPokemon: Pokemon;
-  public isListOfPokemons: boolean = true;
+  public isListOfPokemons: boolean;
 
   @Input() pokemon: Pokemon;
   @Output() changeButtonParent: EventEmitter<number> = new EventEmitter<number>();
@@ -24,19 +23,24 @@ export class PokemonsComponent implements OnInit {
    
   ngOnInit(): void {
     this.getPokemons();
+    this.isListOfPokemons = true;
   }
-  
-  public onSelect(pokemon: Pokemon): void {
-  this.selectedPokemon = pokemon;
+
+  public filterPokemons (pokemonName: string) {
+    this.pokemonService.filterPokemons(pokemonName)
+        .subscribe(pokemons => this.pokemons = pokemons);
+    console.log(pokemonName);
   }
 
   public getPokemons(): void {
-    this.pokemons = this.pokemonService.getPokemons();
+    this.pokemonService.getPokemons()
+    .subscribe(pokemons => this.pokemons = pokemons);
   }
 
   public catchPokemon(id: number): void {
-    const pokemon =  this.pokemonService.getPokemonById(id);
-    pokemon.caught = !pokemon.caught;
+    this.pokemonService.getPokemonById(id)
+    .subscribe(pokemon => this.pokemon = pokemon);
+    this.pokemon.caught = !this.pokemon.caught;
   }
   
   public changeView(): void {

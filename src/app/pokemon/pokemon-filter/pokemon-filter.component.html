@@ -1,0 +1,7 @@
+<div class="pokemon-filter-wrapper">
+    <form class="pokemon-filter">
+        <input class="pokemon-filter__name" type="text" [(ngModel)]="pokemonName" [ngModelOptions]="{standalone: true}" placeholder="Enter name to find pokemon"> 
+        <button class="pokemon-filter__search-button" type="submit" (click)="filterPokemons()">Search</button>
+        <button class="pokemon-filter__reset-button" type="submit" (click)="resetFilter()">Reset</button>
+    </form>
+</div>
