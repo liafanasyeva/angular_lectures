@@ -1,0 +1,7 @@
+<p><b>Editing Mode is on</b></p>
+<form [formGroup]="editDetailsForm" (ngSubmit)="onFormSubmit()">
+    <p> Name: <input formControlName="name"> </p>
+    <p> Damage: <input formControlName="damage"> </p>
+    <p> <button>Update</button> </p> 
+ </form> 
+ <button (click)="goBack()" [routerLink]="['../../']" routerLinkActive="active">Go back</button>

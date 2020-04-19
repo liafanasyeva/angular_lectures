@@ -1,0 +1,21 @@
+<div *ngIf="pokemon && !editMode" class="pokemon-card__item">
+  <img
+    class="pokemon-card__item__image"
+    src="/assets/images/{{ pokemon.id }}.png"
+  />
+  <div class="pokemon-card__item__description">
+    <span>#{{ pokemon.id }}</span
+    ><br />
+    Name: {{ pokemon.name }}<br />
+    Damage: {{ pokemon.damage }}<br />
+    Caught: {{ pokemon.caught }}
+  </div>
+  <button (click)="enableEditing()" [routerLink]="['edit', pokemon.id]"> Edit detail </button>
+  <button (click)="goBack()" >Go back</button>
+</div>
+
+<div *ngIf="pokemon && editMode" class="pokemon-card__item">
+  <app-edit-details [editingPokemon]="pokemon"
+                    [editModeChild]="editMode"
+                    (changeEditMode)="disableEditing($event)"></app-edit-details>
+</div>
