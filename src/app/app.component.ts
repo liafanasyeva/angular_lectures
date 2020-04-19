@@ -3,8 +3,7 @@ import {
   OnInit,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { Pokemon } from './pokemon';
-import { POKEMONS } from './database_pokemons';
+
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,6 @@ import { POKEMONS } from './database_pokemons';
 })
 export class AppComponent implements OnInit {
   title = 'Pokemon app';
-  data: Pokemon[] = POKEMONS;
 
   constructor() {
 

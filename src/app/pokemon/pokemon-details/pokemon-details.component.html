@@ -10,19 +10,12 @@
     Damage: {{ pokemon.damage }}<br />
     Caught: {{ pokemon.caught }}
   </div>
-  <button (click)="enableEditing()">Edit detail</button>
-  <button (click)="goBack()">Go back</button>
+  <button (click)="enableEditing()" [routerLink]="['edit', pokemon.id]"> Edit detail </button>
+  <button (click)="goBack()" >Go back</button>
 </div>
 
 <div *ngIf="pokemon && editMode" class="pokemon-card__item">
-    <form>
-        <label>name:
-            <input [(ngModel)]="pokemonNewName" placeholder="name" [ngModelOptions]="{standalone: true}" />
-        </label>
-        <input [(ngModel)]="pokemonNewDamage" placeholder="damage" [ngModelOptions]="{standalone: true}" />
-        <button (click)="editDetails(pokemonNewName, pokemonNewDamage)">Save</button>
-        <button (click)="disableEditing()">Close</button>
-        <button (click)="goBack()">Go back</button>
-    </form>
-  
+  <app-edit-details [editingPokemon]="pokemon"
+                    [editModeChild]="editMode"
+                    (changeEditMode)="disableEditing($event)"></app-edit-details>
 </div>

@@ -1,6 +1,8 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Pokemon } from '../../pokemon';
+import { NgIf } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,8 @@ export class PokemonService {
   constructor() { }
   
   public getPokemons(): Observable<Pokemon[]> {
-    return of(this.POKEMONS);
+                  return of(this.POKEMONS);
+    
   }
 
   public getPokemonById(id: number): Observable<Pokemon>{
@@ -33,12 +36,11 @@ export class PokemonService {
   }
 
   public filterPokemons(name: string): Observable<Pokemon[]> {
-    return of(
-
-      this.filteredPokemons = this.POKEMONS.filter((pokemon: Pokemon) => pokemon.name === name));
+    return of(this.filteredPokemons = this.POKEMONS.filter((pokemon: Pokemon) => pokemon.name === name));
   }
 
-  public editPokemon(pokemon: Pokemon, name:string, damage: number): Observable<Pokemon> {
+  public editPokemon(id: number, name:string, damage: number): Observable<Pokemon> {
+    let pokemon = this.POKEMONS.find((pokemon: Pokemon) => pokemon.id === id)
     pokemon.name = name;
     pokemon.damage = damage;
     return of(pokemon);
